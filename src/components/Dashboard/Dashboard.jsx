@@ -5,9 +5,9 @@ import WeatherCard from './WeatherCard';
 
 const Dashboard = ({ weatherData, onCityClick }) => {
   return (
-  <div className="min-h-screen bg-cover bg-center text-white"
-  style={{ backgroundImage: "url('/Main.png')" }}
->
+    <div className="min-h-screen bg-cover bg-center text-white"
+      style={{ backgroundImage: "url('/Main.png')" }}>
+        
       <Header showSearch={true} />
       
       {/* Weather Cards Grid */}
