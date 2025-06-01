@@ -3,39 +3,58 @@ import Dashboard from './components/Dashboard/Dashboard';
 import WeatherDetail from './components/WeatherDetail/WeatherDetail';
 import useWeatherData from './hooks/useWeatherData';
 import LoadingSpinner from './components/UI/LoadingSpinner';
+import ProtectedRoute from './auth/ProtectedRoute';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('dashboard');
-  const [selectedCity, setSelectedCity] = useState(null);
-  const { weatherData, loading, error } = useWeatherData();
+  const [currentPage, setCurrentPage] = useState('dashboard');  // State to manage the current view (dashboard or weather detail)
+  const [selectedCity, setSelectedCity] = useState(null);       // State to track which city is selected for detailed view
+  const { weatherData, loading, error } = useWeatherData();     // Custom hook to fetch weather data
 
+  // Open detailed view when dashboard card is been clicked
   const handleCityClick = (city) => {
     setSelectedCity(city);
     setCurrentPage('weather-detail');
   };
 
+  // Handle back navigation from detailed view back to dashboard
   const handleBackClick = () => {
     setCurrentPage('dashboard');
     setSelectedCity(null);
   };
 
-  if (loading) return <LoadingSpinner />;
-  if (error) return <div className="error">Error: {error.message}</div>;
-
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      {currentPage === 'dashboard' ? (
-        <Dashboard 
-          weatherData={weatherData} 
-          onCityClick={handleCityClick} 
-        />
+    <ProtectedRoute>
+      {loading ? (
+        <LoadingSpinner />
+      ) : error ? (
+        <div className="min-h-screen bg-red-50 flex items-center justify-center">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-red-600 mb-4">Weather Data Error</h2>
+            <p className="text-red-500 mb-4">{error.message || 'Failed to load weather data'}</p>
+            <button 
+              onClick={() => window.location.reload()}
+              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
       ) : (
-        <WeatherDetail 
-          city={selectedCity} 
-          onBackClick={handleBackClick} 
-        />
+        <>
+          {currentPage === 'dashboard' ? (
+            <Dashboard 
+              weatherData={weatherData} 
+              onCityClick={handleCityClick} 
+            />
+          ) : (
+            <WeatherDetail 
+              city={selectedCity} 
+              onBackClick={handleBackClick} 
+            />
+          )}
+        </>
       )}
-    </div>
+    </ProtectedRoute>
   );
 }
 
