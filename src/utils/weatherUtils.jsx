@@ -1,11 +1,16 @@
-import { Cloud, Sun, CloudRain } from 'lucide-react';
+import { Cloud, Sun, CloudRain, CloudSnow, Eye, Wind } from 'lucide-react';
 
 export function getWeatherDescription(status) {
   const descriptions = {
     'Clear': 'Clear Sky',
     'Clouds': 'Few Clouds',
     'Rain': 'Light Rain',
-    'Mist': 'Mist'
+    'Mist': 'Mist',
+    'Snow': 'Snow',
+    'Thunderstorm': 'Thunderstorm',
+    'Drizzle': 'Drizzle',
+    'Fog': 'Fog',
+    'Haze': 'Haze'
   };
   return descriptions[status] || status;
 }
@@ -13,18 +18,40 @@ export function getWeatherDescription(status) {
 export function getWeatherIcon(status) {
   switch (status) {
     case 'Clear': return Sun;
-    case 'Rain': return CloudRain;
-    case 'Clouds': return Cloud;
-    case 'Mist': return Cloud;
+    case 'Rain': 
+    case 'Drizzle': 
+      return CloudRain;
+    case 'Clouds': 
+    case 'Mist':
+    case 'Fog':
+    case 'Haze':
+      return Cloud;
+    case 'Snow': return CloudSnow;
+    case 'Thunderstorm': return CloudRain;
     default: return Cloud;
   }
 }
 
 export function formatWindDirection(deg) {
+  if (typeof deg === 'undefined' || deg === null) return 'N/A';
+  
   const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
   return directions[Math.round(deg / 45) % 8];
 }
 
+// Convert Unix timestamp to readable time
+export function formatTime(timestamp, timezone = 0) {
+  if (!timestamp) return 'N/A';
+  
+  const date = new Date((timestamp + timezone) * 1000);
+  return date.toLocaleTimeString([], { 
+    hour: '2-digit', 
+    minute: '2-digit',
+    hour12: true 
+  });
+}
+
+// Fallback function for mock data (kept for development/fallback purposes)
 export function enhanceWeatherData(citiesData) {
   return citiesData.map(city => ({
     id: parseInt(city.CityCode),
@@ -48,8 +75,14 @@ export function enhanceWeatherData(citiesData) {
     },
     visibility: Math.floor(Math.random() * 5000) + 5000,
     sys: {
-      sunrise: new Date().setHours(6, Math.floor(Math.random() * 60)),
-      sunset: new Date().setHours(18, Math.floor(Math.random() * 60))
-    }
+      country: 'XX',
+      sunrise: Math.floor(Date.now() / 1000) + 6 * 3600,
+      sunset: Math.floor(Date.now() / 1000) + 18 * 3600
+    },
+    coord: {
+      lat: 0,
+      lon: 0
+    },
+    dt: Math.floor(Date.now() / 1000)
   }));
 }
