@@ -7,6 +7,7 @@ const Header = ({ showSearch = false }) => {
   return (
     <header className="bg-gray-800 p-6 relative">
       <div className="max-w-6xl mx-auto">
+
         {/* Top Row: Centered Title, Right-Aligned Profile */}
         <div className="relative flex justify-center items-center mb-4">
           <div className="flex items-center space-x-3">
@@ -26,6 +27,7 @@ const Header = ({ showSearch = false }) => {
             <SearchBar />
           </div>
         )}
+        
       </div>
     </header>
   );

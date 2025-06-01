@@ -1,0 +1,35 @@
+.wind {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wind span {
+  display: block;
+  width: 100px;
+  height: 10px;
+  background: #60a5fa;
+  border-radius: 50px;
+  animation: wind-blow 1.5s ease-in-out infinite;
+}
+
+.wind span:nth-child(2) {
+  width: 80px;
+  animation-delay: 0.2s;
+}
+
+.wind span:nth-child(3) {
+  width: 60px;
+  animation-delay: 0.4s;
+}
+
+@keyframes wind-blow {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(20px);
+    opacity: 0.4;
+  }
+}

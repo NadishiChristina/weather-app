@@ -1,5 +1,6 @@
 import { Cloud, Sun, CloudRain, CloudSnow, Eye, Wind } from 'lucide-react';
 
+// Maps raw weather status codes from the API to human-friendly descriptions. 
 export function getWeatherDescription(status) {
   const descriptions = {
     'Clear': 'Clear Sky',
@@ -15,6 +16,7 @@ export function getWeatherDescription(status) {
   return descriptions[status] || status;
 }
 
+// Return weather icon to suit weather status
 export function getWeatherIcon(status) {
   switch (status) {
     case 'Clear': return Sun;
@@ -32,6 +34,7 @@ export function getWeatherIcon(status) {
   }
 }
 
+// Convert wind direction in degrees to compass direction
 export function formatWindDirection(deg) {
   if (typeof deg === 'undefined' || deg === null) return 'N/A';
   

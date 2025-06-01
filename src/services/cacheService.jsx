@@ -8,8 +8,8 @@ let cache = {
 
 export function isValidCache() {
   return cache.data && 
-         cache.timestamp && 
-         (Date.now() - cache.timestamp < CACHE_DURATION);
+        cache.timestamp && 
+        (Date.now() - cache.timestamp < CACHE_DURATION);
 }
 
 export function getCachedData() {
