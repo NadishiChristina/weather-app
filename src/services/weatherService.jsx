@@ -8,7 +8,7 @@ export async function fetchWeatherData() {
       throw new Error('API key not configured');
     }
 
-    // Use city codes (IDs) only
+    // Use city codes only
     const cityCodes = CITIES_DATA.List.map(city => city.CityCode);
     const cityIds = cityCodes.join(',');
 

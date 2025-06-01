@@ -50,39 +50,3 @@ export function formatTime(timestamp, timezone = 0) {
     hour12: true 
   });
 }
-
-// Fallback function for mock data (kept for development/fallback purposes)
-export function enhanceWeatherData(citiesData) {
-  return citiesData.map(city => ({
-    id: parseInt(city.CityCode),
-    name: city.CityName,
-    main: {
-      temp: parseFloat(city.Temp),
-      feels_like: parseFloat(city.Temp) + (Math.random() * 4 - 2),
-      humidity: Math.floor(Math.random() * 40) + 40,
-      pressure: Math.floor(Math.random() * 50) + 1000,
-      temp_min: parseFloat(city.Temp) - Math.random() * 5,
-      temp_max: parseFloat(city.Temp) + Math.random() * 5
-    },
-    weather: [{
-      main: city.Status,
-      description: getWeatherDescription(city.Status),
-      icon: getWeatherIcon(city.Status)
-    }],
-    wind: {
-      speed: Math.random() * 10 + 2,
-      deg: Math.floor(Math.random() * 360)
-    },
-    visibility: Math.floor(Math.random() * 5000) + 5000,
-    sys: {
-      country: 'XX',
-      sunrise: Math.floor(Date.now() / 1000) + 6 * 3600,
-      sunset: Math.floor(Date.now() / 1000) + 18 * 3600
-    },
-    coord: {
-      lat: 0,
-      lon: 0
-    },
-    dt: Math.floor(Date.now() / 1000)
-  }));
-}
