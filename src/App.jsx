@@ -6,13 +6,15 @@ import LoadingSpinner from './components/UI/LoadingSpinner';
 import ProtectedRoute from './auth/ProtectedRoute';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('dashboard');  // State to manage the current view (dashboard or weather detail)
-  const [selectedCity, setSelectedCity] = useState(null);       // State to track which city is selected for detailed view
-  const { weatherData, loading, error } = useWeatherData();     // Custom hook to fetch weather data
+  const [currentPage, setCurrentPage] = useState('dashboard');
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [selectedCityIndex, setSelectedCityIndex] = useState(null);
+  const { weatherData, loading, error } = useWeatherData();
 
   // Open detailed view when dashboard card is been clicked
-  const handleCityClick = (city) => {
+  const handleCityClick = (city, index) => {
     setSelectedCity(city);
+    setSelectedCityIndex(index); // Store the index
     setCurrentPage('weather-detail');
   };
 
@@ -20,6 +22,7 @@ function App() {
   const handleBackClick = () => {
     setCurrentPage('dashboard');
     setSelectedCity(null);
+    setSelectedCityIndex(null); // Reset index
   };
 
   return (
@@ -49,6 +52,7 @@ function App() {
           ) : (
             <WeatherDetail 
               city={selectedCity} 
+              cityIndex={selectedCityIndex} // Pass the index
               onBackClick={handleBackClick} 
             />
           )}

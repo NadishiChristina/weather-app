@@ -18,7 +18,7 @@ const Dashboard = ({ weatherData, onCityClick }) => {
               key={city.id}
               city={city}
               index={index}
-              onClick={() => onCityClick(city)}
+              onClick={() => onCityClick(city, index)} // Pass both city and index
             />
           ))}
         </div>
