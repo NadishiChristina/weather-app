@@ -41,9 +41,10 @@ const WeatherInfo = ({ city }) => {
       <div className={`text-center mb-8 pt-4 transition-all duration-1000 ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
       }`}>
-        <h2 className="text-3xl font-bold mb-2">{city.name}</h2>
+        <h2 className="text-5xl font-bold mb-2">{city.name}</h2>
         <p className="text-blue-100">
-          {new Date().toLocaleDateString('en-US', { 
+          {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })},
+          {' ' + new Date().toLocaleDateString('en-US', { 
             weekday: 'long', 
             month: 'short', 
             day: 'numeric' 
