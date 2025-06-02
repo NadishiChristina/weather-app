@@ -1,23 +1,28 @@
 .wind {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  align-items: flex-start;
 }
 
 .wind span {
   display: block;
-  width: 100px;
-  height: 10px;
+  height: 12px;
   background: #60a5fa;
-  border-radius: 50px;
+  border-radius: 9999px;
   animation: wind-blow 1.5s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(96, 165, 250, 0.4);
+  opacity: 0.9;
+  transition: transform 0.3s ease;
 }
 
+.wind span:nth-child(1) {
+  width: 100px;
+}
 .wind span:nth-child(2) {
   width: 80px;
   animation-delay: 0.2s;
 }
-
 .wind span:nth-child(3) {
   width: 60px;
   animation-delay: 0.4s;
@@ -26,10 +31,10 @@
 @keyframes wind-blow {
   0%, 100% {
     transform: translateX(0);
-    opacity: 0.8;
+    opacity: 0.85;
   }
   50% {
-    transform: translateX(20px);
+    transform: translateX(30px);
     opacity: 0.4;
   }
 }
