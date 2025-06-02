@@ -1,45 +1,42 @@
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+const CACHE_KEY = 'weather_cache';    // Unique key to store cache in localStorage
+const CACHE_DURATION = 5 * 60 * 1000; // cache duration in ms - 5 minutes
 
-let cache = {
-  data: null,
-  timestamp: null,
-  error: null
-};
-
+/**
+ * Checks if cached data exists and is still valid (not expired).
+ * returns True if cache is valid, false otherwise.
+ */
 export function isValidCache() {
-  return cache.data && 
-        cache.timestamp && 
-        (Date.now() - cache.timestamp < CACHE_DURATION);
+  const cache = JSON.parse(localStorage.getItem(CACHE_KEY));
+  return cache &&
+    cache.data &&
+    cache.timestamp &&
+    (Date.now() - cache.timestamp < CACHE_DURATION);
 }
 
+/**
+ * Retrieves the cached weather data from localStorage.
+ * returns Cached data if available, otherwise null.
+ */
 export function getCachedData() {
-  return cache.data;
+  const cache = JSON.parse(localStorage.getItem(CACHE_KEY));
+  return cache?.data || null;
 }
 
+/**
+ * Stores new data into cache with the current timestamp.
+ */
 export function setCachedData(data) {
-  cache.data = data;
-  cache.timestamp = Date.now();
-  cache.error = null; // Clear any previous errors
+  const cache = {
+    data,
+    timestamp: Date.now(),
+    error: null
+  };
+  localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
 }
 
-export function setCachedError(error) {
-  cache.error = error;
-  cache.timestamp = Date.now();
-  cache.data = null;
-}
-
-export function getCachedError() {
-  return cache.error;
-}
-
-export function hasValidErrorCache() {
-  return cache.error && 
-         cache.timestamp && 
-         (Date.now() - cache.timestamp < 60 * 1000); // Cache errors for 1 minute
-}
-
+/**
+ * Clears the cached data from localStorage.
+ */
 export function clearCache() {
-  cache.data = null;
-  cache.timestamp = null;
-  cache.error = null;
+  localStorage.removeItem(CACHE_KEY);
 }
