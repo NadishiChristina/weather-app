@@ -25,7 +25,7 @@ const LoginScreen = () => {
             <h1 className="text-4xl font-bold text-white">Weather App</h1>
           </div>
           <p className="text-blue-200 text-lg">
-            Get real-time weather updates from around the world
+            Get real-time weather updates from around the world!
           </p>
         </div>
 
@@ -39,7 +39,7 @@ const LoginScreen = () => {
             <p className="text-gray-600">Please sign in to access weather data</p>
           </div>
 
-          {/* Security Features */}
+          {/* Security Feature Info */}
           <div className="mb-6 p-4 bg-gray-50 rounded-lg">
             <div className="flex items-center space-x-2 mb-2">
               <Shield className="w-5 h-5 text-green-600" />
@@ -47,7 +47,7 @@ const LoginScreen = () => {
             </div>
             <ul className="text-xs text-gray-600 space-y-1 ml-7">
               <li>• Multi-factor authentication enabled with OTP + Email</li>
-              <li>• Restricted access for authorized users only</li>
+              <li>• Access is restricted to authorized users only</li>
             </ul>
           </div>
 
