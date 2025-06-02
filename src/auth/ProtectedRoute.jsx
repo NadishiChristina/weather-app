@@ -17,7 +17,7 @@ const ProtectedRoute = ({ children }) => {
       <div className="min-h-screen bg-red-50 flex items-center justify-center px-4">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-red-600 mb-4">Authentication Error</h2>
-          <p className="text-red-500">{error.message}</p>
+          <p className="text-red-500 mb-4">{error.message}</p>
           <button
             onClick={() => window.location.reload()}
             className="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded"
@@ -29,7 +29,7 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
-  // Redirect to login screen if not authenticated
+  // Only show login screen if definitely not authenticated
   if (!isAuthenticated) {
     return <LoginScreen />;
   }

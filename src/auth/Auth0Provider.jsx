@@ -1,7 +1,7 @@
 import React from 'react';
 import { Auth0Provider } from '@auth0/auth0-react';
 
-/* Integrates Auth0 for secure login, logout, and token handling */
+// Integrates Auth0 for secure login, logout, and token handling
 
 const Auth0ProviderWithHistory = ({ children }) => {
 
@@ -19,12 +19,12 @@ const Auth0ProviderWithHistory = ({ children }) => {
       domain={domain}
       clientId={clientId}
       authorizationParams={{
-        redirect_uri: window.location.origin, // redirect users after login
-        audience: audience,                   // request an access token for the protected API
-        scope: "openid profile email"         // grants permissions for basic user data
+        redirect_uri: window.location.origin,
+        audience: audience,                      // request an access token for the protected API
+        scope: "openid profile email"            // grants permissions for basic user data
       }}
-      cacheLocation="memory"                  // store tokens in memory
-      useRefreshTokens={true}                 // token renewal - to avoid logging out on token expiry
+      cacheLocation="localstorage"               // store tokens
+      useRefreshTokens={true}                    // token renewal - to avoid logging out on token expiry
     >
       {children}
     </Auth0Provider>

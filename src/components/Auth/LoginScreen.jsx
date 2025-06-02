@@ -46,8 +46,7 @@ const LoginScreen = () => {
               <span className="text-sm font-medium text-gray-700">Secure Authentication</span>
             </div>
             <ul className="text-xs text-gray-600 space-y-1 ml-7">
-              <li>• Multi-factor authentication enabled</li>
-              <li>• Email verification required</li>
+              <li>• Multi-factor authentication enabled with OTP + Email</li>
               <li>• Restricted access for authorized users only</li>
             </ul>
           </div>
