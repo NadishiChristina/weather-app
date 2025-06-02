@@ -8,7 +8,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
   // Fetch Auth0 app credentials from .env file
   const domain = import.meta.env.VITE_AUTH0_DOMAIN; 
   const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
-  const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
+  // const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
 
   if (!domain || !clientId) {
     throw new Error('Auth0 domain and client ID must be provided');
@@ -20,7 +20,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
       clientId={clientId}
       authorizationParams={{
         redirect_uri: window.location.origin,
-        audience: audience,                      // request an access token for the protected API
+        // audience: audience,                   // request an access token for the protected API
         scope: "openid profile email"            // grants permissions for basic user data
       }}
       cacheLocation="localstorage"               // store tokens
