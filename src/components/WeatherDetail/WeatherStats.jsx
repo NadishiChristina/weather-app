@@ -23,10 +23,6 @@ const WeatherStats = ({ city }) => {
               {city.visibility ? (city.visibility / 1000).toFixed(1) : 'N/A'} km
             </p>
           </div>
-          <div className="text-center">
-            <p className="text-base md:text-lg text-gray-400">Feels Like:</p>
-            <p className="text-lg md:text-xl text-white font-semibold">{Math.round(city.main.feels_like)}°C</p>
-          </div>
         </div>
 
         {/* Middle Column */}
