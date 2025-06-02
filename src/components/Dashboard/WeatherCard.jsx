@@ -3,6 +3,8 @@ import { Navigation } from 'lucide-react';
 import { getWeatherIcon, formatTime } from '../../utils/weatherUtils';
 import { WEATHER_CARD_COLORS } from '../../utils/constants';
 
+// Dashboard view weather card
+
 const WeatherCard = ({ city, index, onClick }) => {
   const IconComponent = getWeatherIcon(city.weather[0].main);
   const cardColor = WEATHER_CARD_COLORS[index % WEATHER_CARD_COLORS.length];

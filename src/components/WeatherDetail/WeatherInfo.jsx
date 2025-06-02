@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getWeatherIcon } from '../../utils/weatherUtils';
 
+// Expanded view weather card - top info
+
 const WeatherInfo = ({ city }) => {
   const [isVisible, setIsVisible] = useState(false);
   const IconComponent = getWeatherIcon(city.weather[0].main);

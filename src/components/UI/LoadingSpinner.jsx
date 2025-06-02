@@ -3,7 +3,7 @@ import './LoadingSpinner.css';
 
 const LoadingSpinner = () => {
   return (
-    /* spinner - wind animation */
+    // spinner - wind animation 
     <div className="min-h-screen bg-blue-950 flex flex-col items-center justify-center">
       <div className="wind"> 
         <span></span>

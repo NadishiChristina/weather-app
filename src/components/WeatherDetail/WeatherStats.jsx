@@ -2,6 +2,8 @@ import React from 'react';
 import { Navigation, Sunrise, Sunset } from 'lucide-react';
 import { formatWindDirection, formatTime } from '../../utils/weatherUtils';
 
+// Expanded view weather card - bottom stats info
+
 const WeatherStats = ({ city }) => {
   return (
     <div className="bg-gray-800 p-8">

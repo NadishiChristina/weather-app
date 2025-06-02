@@ -3,6 +3,8 @@ import Header from '../Layout/Header';
 import Footer from '../Layout/Footer';
 import WeatherCard from './WeatherCard';
 
+// Weather App Main Dashboard 
+
 const Dashboard = ({ weatherData, onCityClick }) => {
   return (
     <div className="min-h-screen bg-cover bg-center text-white"

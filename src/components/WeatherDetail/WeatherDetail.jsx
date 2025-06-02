@@ -6,6 +6,8 @@ import WeatherInfo from './WeatherInfo';
 import WeatherStats from './WeatherStats';
 import { WEATHER_CARD_COLORS } from '../../utils/constants';
 
+// Expanded view weather card structure
+
 const WeatherDetail = ({ city, cityIndex, onBackClick }) => {
   if (!city) return null;
 
