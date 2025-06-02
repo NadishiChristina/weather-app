@@ -12,12 +12,12 @@ function App() {
   const [showContent, setShowContent] = useState(false);
   const { weatherData, loading, error } = useWeatherData();
 
-  // Add minimum display time for loader
+  // Add loading delay for loader
   useEffect(() => {
     if (!loading && !error && weatherData.length > 0) {
       const timer = setTimeout(() => {
         setShowContent(true);
-      }, 1500); // Additional 1.5 seconds - adjust as needed
+      }, 1500); // delay content for 1.5 seconds
 
       return () => clearTimeout(timer);
     }
@@ -42,6 +42,7 @@ function App() {
       {(loading || !showContent) ? (
         <LoadingSpinner />
       ) : error ? (
+        // Error fallback UI
         <div className="min-h-screen bg-red-50 flex items-center justify-center">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-red-600 mb-4">Weather Data Error</h2>
