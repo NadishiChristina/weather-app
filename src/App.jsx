@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Dashboard from './components/Dashboard/Dashboard';
 import WeatherDetail from './components/WeatherDetail/WeatherDetail';
 import useWeatherData from './hooks/useWeatherData';
@@ -9,7 +9,19 @@ function App() {
   const [currentPage, setCurrentPage] = useState('dashboard');
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedCityIndex, setSelectedCityIndex] = useState(null);
+  const [showContent, setShowContent] = useState(false);
   const { weatherData, loading, error } = useWeatherData();
+
+  // Add minimum display time for loader
+  useEffect(() => {
+    if (!loading && !error && weatherData.length > 0) {
+      const timer = setTimeout(() => {
+        setShowContent(true);
+      }, 1500); // Additional 1.5 seconds - adjust as needed
+
+      return () => clearTimeout(timer);
+    }
+  }, [loading, error, weatherData]);
 
   // Open detailed view when dashboard card is been clicked
   const handleCityClick = (city, index) => {
@@ -27,7 +39,7 @@ function App() {
 
   return (
     <ProtectedRoute>
-      {loading ? (
+      {(loading || !showContent) ? (
         <LoadingSpinner />
       ) : error ? (
         <div className="min-h-screen bg-red-50 flex items-center justify-center">
