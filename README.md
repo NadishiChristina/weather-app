@@ -11,6 +11,13 @@ A secure and responsive Weather Information Web/API Application that retrieves a
 
 ## Setup Instructions
 
+### Prerequisites
+
+- **Node.js (v16 or higher)**
+- **npm or yarn package manager**
+- **OpenWeatherMap API account**
+- **Auth0 account**
+
 ### 1. Clone or Download the Project Repository
 
 ```bash
@@ -44,6 +51,7 @@ npm install
 ```bash
 npm run dev
 ```
+The application will be available at http://localhost:5173
 
 ## Features
 
@@ -56,6 +64,7 @@ npm run dev
 ### 💾 Data Caching
 
 - Weather data is cached for 5 minutes to reduce redundant requests and improve performance
+- **Cache Status Logging**: Console logs show when data is served from cache vs. fresh API calls
 
 ### 🔒 Authentication & Authorization
 
