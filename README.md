@@ -73,6 +73,13 @@ The application will be available at http://localhost:5173
 - **Restricted Access:** Public sign-ups disabled — only pre-registered users (configured via Auth0) can access the application
 - **Test Account:** A test account is provided for assignment/demo use
 
+ ## 📸 Screenshots
+
+  ![Image 4](UI_screenshots/1.PNG)
+  ![Image 1](UI_screenshots/2.PNG)
+  ![Image 2](UI_screenshots/3.PNG)
+  ![Image 3](UI_screenshots/4.PNG)
+
 ## Configuration
 
 Make sure to replace the placeholder values in your `.env` file with your actual API credentials:
